@@ -12,6 +12,7 @@
     <GridView xmlns:android="http://schemas.android.com/apk/res/android"
               android:id="@+id/grid_view"
               android:layout_width="fill_parent"
+              android:background="#FF000000"
               android:layout_height="fill_parent"
               android:numColumns="4"
               android:columnWidth="50dp"
