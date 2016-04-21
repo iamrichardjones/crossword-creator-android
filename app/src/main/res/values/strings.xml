@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">crossword</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">Crosswords</string>
     <string name="action_settings">Settings</string>
 </resources>
