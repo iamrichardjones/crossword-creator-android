@@ -22,11 +22,6 @@ public class EntryPoint extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry_point);
 
-//        TextView tv = (TextView) findViewById(R.id.tv);
-
-        //test guava works
-//        tv.setText(newArrayList("1", "2", "3").toString());
-
         //test gson works
         Gson gson = new Gson();
 
@@ -42,8 +37,8 @@ public class EntryPoint extends AppCompatActivity {
                 Toast.makeText(EntryPoint.this, "D" + position, Toast.LENGTH_SHORT).show();
             }
         });
-    }
 
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
