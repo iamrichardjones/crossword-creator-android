@@ -23,7 +23,8 @@ public class CrosswordAdapter extends BaseAdapter {
         View gridView;
 
         if (convertView == null) {
-            gridView = inflater.inflate(R.layout.mobile, null);
+            gridView = inflater.inflate(R.layout.GridCell, null);
+
 
             // set value into textview
             TextView textView = (TextView) gridView.findViewById(R.id.grid_item_label);
