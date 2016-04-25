@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.*;
 import com.google.gson.Gson;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
@@ -27,10 +26,6 @@ public class EntryPoint extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry_point);
-
-        //test gson works
-        Gson gson = new Gson();
-
 
         GridView gridView = (GridView) findViewById(R.id.grid_view);
 
