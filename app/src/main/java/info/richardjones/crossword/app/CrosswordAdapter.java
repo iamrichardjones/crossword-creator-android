@@ -9,11 +9,11 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 
-public class MyAdapter extends BaseAdapter {
+public class CrosswordAdapter extends BaseAdapter {
 
     private Context context;
 
-    public MyAdapter(Context context) {
+    public CrosswordAdapter(Context context) {
         this.context = context;
     }
 

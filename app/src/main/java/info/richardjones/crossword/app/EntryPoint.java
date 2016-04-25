@@ -29,13 +29,13 @@ public class EntryPoint extends AppCompatActivity {
 
         GridView gridView = (GridView) findViewById(R.id.grid_view);
 
-        MyAdapter adapter = new MyAdapter(EntryPoint.this);
+        CrosswordAdapter adapter = new CrosswordAdapter(EntryPoint.this);
         gridView.setAdapter(adapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                Toast.makeText(EntryPoint.this, "D" + position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(EntryPoint.this, "Position: " + position, Toast.LENGTH_SHORT).show();
             }
         });
 
