@@ -2,19 +2,25 @@ package info.richardjones.crossword.app;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 import com.google.gson.Gson;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
+
 public class EntryPoint extends AppCompatActivity {
 
     public static final Integer[] GRID_COLOURS = {
-            0xFFFFFFFF, 0x00FFFFFF, 0xFFFFFFFF, 0xFFFFFFFF,
-            0xFF000000, 0xFFFFFFFF, 0xFF000000, 0xFF000000,
-            0xFFFFFFFF, 0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF,
-            0xFF000000, 0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF
+            0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF,
+            0xFF000000, 0xFFFFFFFF, 0xFF000000, 0xFF000000, 0xFF000000,
+            0xFFFFFFFF, 0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF, 0xFFFFFFFF,
+            0xFF000000, 0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF, 0xFFFFFFFF
     };
 
     @Override
@@ -38,6 +44,16 @@ public class EntryPoint extends AppCompatActivity {
             }
         });
 
+        loadList();
+    }
+
+    private void loadList() {
+        final ListView listview = (ListView) findViewById(R.id.clueList);
+        List<String> values = newArrayList("Clue111", "Clue2", "Clue3",
+                "Clue4", "Clue5", "Clue6", "Clue7", "Clue8", "Clue9");
+
+        final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.activity_list_item, android.R.id.text1, values);
+        listview.setAdapter(adapter);
     }
 
     @Override

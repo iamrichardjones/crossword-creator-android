@@ -10,42 +10,43 @@
                tools:context=".EntryPointFragment">
 
     <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="#1111EE"
+            android:orientation="horizontal">
 
         <View
+                android:background="#FFFFFF00"
                 android:layout_width="0dp"
-                android:background="#FFFFFFFF"
                 android:layout_height="wrap_content"
-                android:gravity="right"
                 android:layout_weight="1"/>
 
         <GridView xmlns:android="http://schemas.android.com/apk/res/android"
                   android:id="@+id/grid_view"
                   android:background="#FF000000"
-                  android:layout_width="120dp"
-                  android:layout_height="wrap_content"
-                  android:numColumns="4"
-                  android:columnWidth="30dp"
+                  android:layout_width="175px"
+                  android:layout_height="170px"
+                  android:numColumns="5"
+                  android:columnWidth="35dp"
                   android:verticalSpacing="1dp"
                   android:horizontalSpacing="1dp"
-                  android:gravity="center"
                 />
 
         <View
+                android:background="#FFFF00FF"
                 android:layout_width="0dp"
-                android:background="#FFFFFFFF"
                 android:layout_height="wrap_content"
-                android:gravity="right"
                 android:layout_weight="1"/>
     </LinearLayout>
 
-    <View
-            android:layout_width="match_parent"
-            android:background="#FFFFFFFF"
-            android:layout_height="match_parent"
-            android:gravity="bottom"
-            android:layout_weight="1"/>
+    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/clueList"
+              android:background="#FF00DD00"
+              android:layout_weight="1"
+              android:layout_margin="10px"
+              android:layout_width="match_parent"
+              android:layout_height="0dp" />
 
 </LinearLayout>
