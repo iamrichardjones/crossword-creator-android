@@ -30,20 +30,15 @@ public class CrosswordAdapter extends BaseAdapter {
         if (convertView == null) {
             gridView = inflater.inflate(R.layout.grid_cell, null);
 
-            // set value into textview
             TextView textView = (TextView) gridView.findViewById(R.id.grid_item_label);
-            if (position < cells.size()) {
-                textView.setText(cells.get(position).getLetter());
-            }
+            textView.setText(cells.get(position).getLetter());
         } else {
             gridView = convertView;
         }
 
         Log.d("ABC", "Position is " + position);
-        if (position < cells.size()) {
-            Log.d("ABC", "" + cells.get(position).getBackgroundColour());
-            gridView.setBackgroundColor(cells.get(position).getBackgroundColour());
-        }
+        gridView.setBackgroundColor(cells.get(position).getBackgroundColour());
+
         return gridView;
     }
 
