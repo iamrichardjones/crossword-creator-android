@@ -17,27 +17,19 @@ import static com.google.common.collect.Lists.newArrayList;
 
 public class EntryPoint extends AppCompatActivity {
 
-    public static final Integer[] GRID_COLOURS = {
-            0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF,
-            0xFF000000, 0xFFFFFFFF, 0xFF000000, 0xFF000000, 0xFF000000,
-            0xFFFFFFFF, 0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF, 0xFFFFFFFF,
-            0xFF000000, 0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF, 0xFFFFFFFF
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry_point);
 
-        load();
+        loadData();
     }
 
-    private void load() {
+    private void loadData() {
         TestCrosswordLoader loader = new TestCrosswordLoader();
-        Integer width = loader.getWidth();
 
         GridView gridView = (GridView) findViewById(R.id.grid_view);
-        gridView.setNumColumns(width);
+        gridView.setNumColumns(loader.getWidth());
 
         List<Cell> cells = loader.getCells();
         CrosswordAdapter adapter = new CrosswordAdapter(EntryPoint.this, cells);

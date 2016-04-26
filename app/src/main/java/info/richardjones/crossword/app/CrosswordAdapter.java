@@ -39,8 +39,7 @@ public class CrosswordAdapter extends BaseAdapter {
             gridView = convertView;
         }
 
-        Log.d("ABC", "position is " + position);
-//        Integer gridColour = EntryPoint.GRID_COLOURS[position];
+        Log.d("ABC", "Position is " + position);
         if (position < cells.size()) {
             Log.d("ABC", "" + cells.get(position).getBackgroundColour());
             gridView.setBackgroundColor(cells.get(position).getBackgroundColour());
@@ -50,7 +49,7 @@ public class CrosswordAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return EntryPoint.GRID_COLOURS.length;
+        return cells.size();
     }
 
     @Override
