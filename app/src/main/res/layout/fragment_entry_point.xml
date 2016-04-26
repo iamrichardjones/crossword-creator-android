@@ -18,7 +18,7 @@
             android:orientation="horizontal">
 
         <View
-                android:background="#FFFFFF00"
+                android:background="#FF5B5B5B"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
