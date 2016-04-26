@@ -6,14 +6,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
-import com.google.common.base.Function;
-import com.google.common.collect.Lists;
 import info.richardjones.crossword.app.loader.TestCrosswordLoader;
 import info.richardjones.crossword.app.vo.Cell;
 
 import java.util.List;
-
-import static com.google.common.collect.Lists.newArrayList;
 
 public class EntryPoint extends AppCompatActivity {
 
