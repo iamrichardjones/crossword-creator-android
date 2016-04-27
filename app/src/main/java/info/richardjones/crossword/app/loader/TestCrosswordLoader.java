@@ -25,14 +25,24 @@ public class TestCrosswordLoader {
 
 
     public List<Cell> getCells() {
-        return crosswordLoader.load();
+        return crosswordLoader.getCells();
     }
 
     public String getTestString() {
         return
+                /* 4 * 3*/
                 "{number:1,letter:C,downClue:Bed}-{letter:A}-{letter:T}-{blank}|" +
                 "{letter:O}-{blank}-{blank}-{number:2,letter:B,downClue:To...}|" +
                 "{number:3,letter:T,acrossClue:big+bush}-{letter:R}-{letter:E}-{letter:E}";
+
+//        /* 2 * 3*/
+//        "{number:1,letter:C,downClue:Bed}-{letter:A}|" +
+//                "{letter:O}-{blank}|" +
+//                "{number:3,letter:T,acrossClue:big+bush}-{letter:R}";
+
+//        /* 5 * 2*/
+//        "{number:1,letter:C,downClue:Bed}-{letter:A}-{letter:T}-{blank}-{number:3,letter:B,downClue:Digging+Stick}|" +
+//                "{letter:O}-{blank}-{blank}-{number:2,letter:B,downClue:To...}-{letter:A}";
     }
 
     public Integer getHeight(){
