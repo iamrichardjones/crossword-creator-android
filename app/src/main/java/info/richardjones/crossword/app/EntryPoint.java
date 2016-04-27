@@ -46,9 +46,7 @@ public class EntryPoint extends AppCompatActivity {
 
     private void loadClueList(List<Cell> cells) {
         final ListView listview = (ListView) findViewById(R.id.clueList);
-//        final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.activity_list_item, android.R.id.text1, cells);
-        final ArrayAdapter adapter = new ClueAdapter(this, getCellsWithClues(cells));
-        listview.setAdapter(adapter);
+        listview.setAdapter(new ClueAdapter(this, getCellsWithClues(cells)));
     }
 
     private List<Cell> getCellsWithClues(List<Cell> cells) {
@@ -59,6 +57,8 @@ public class EntryPoint extends AppCompatActivity {
                 cellsWithClues.add(cell);
             }
         }
+
+        Collections.sort(cellsWithClues, Cell.SORT_BY_NUMBER);
 
         return cellsWithClues;
     }

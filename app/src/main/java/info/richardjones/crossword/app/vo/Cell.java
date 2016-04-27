@@ -2,13 +2,20 @@ package info.richardjones.crossword.app.vo;
 
 
 import android.graphics.Color;
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
+
+import java.util.Comparator;
 
 //"[number:1;letter:C;downClue:AB;acrossClue:CD][letter:A][letter:T][]|" +
 //"[letter:O}][][][number:2;letter:B;down-clue:TO...]|" +
 //"[number:3;letter:T; acrossClue:big bush][letter:R][letter:E][letter:E]";
 public class Cell {
+
+    public static final Comparator<Cell> SORT_BY_NUMBER = new Comparator<Cell>() {
+        @Override
+        public int compare(Cell lhs, Cell rhs) {
+            return lhs.number.compareTo(rhs.number);
+        }
+    };
 
     private Integer number;
     private String letter;
@@ -61,7 +68,7 @@ public class Cell {
     }
 
     public String getAcrossClue() {
-        return acrossClue;
+        return acrossClue.replaceAll("\\+", " ");
     }
 
     public String getDownClue() {
