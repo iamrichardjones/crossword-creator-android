@@ -31,7 +31,7 @@ public class CrosswordLoader {
         return CharMatcher.is(toFind).countIn(str);
     }
 
-    public List<Cell> load() {
+    public List<Cell> getCells() {
 
         List<Cell> cellsList = newArrayList();
         Gson gson = new Gson();
