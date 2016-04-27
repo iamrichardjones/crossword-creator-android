@@ -9,7 +9,10 @@ import android.widget.*;
 import info.richardjones.crossword.app.loader.TestCrosswordLoader;
 import info.richardjones.crossword.app.vo.Cell;
 
+import java.util.Collections;
 import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 public class EntryPoint extends AppCompatActivity {
 
@@ -43,8 +46,21 @@ public class EntryPoint extends AppCompatActivity {
 
     private void loadClueList(List<Cell> cells) {
         final ListView listview = (ListView) findViewById(R.id.clueList);
-        final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.activity_list_item, android.R.id.text1, cells);
+//        final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.activity_list_item, android.R.id.text1, cells);
+        final ArrayAdapter adapter = new ClueAdapter(this, getCellsWithClues(cells));
         listview.setAdapter(adapter);
+    }
+
+    private List<Cell> getCellsWithClues(List<Cell> cells) {
+        List<Cell> cellsWithClues = newArrayList();
+
+        for (Cell cell : cells) {
+            if (cell.getNumber() > 0) {
+                cellsWithClues.add(cell);
+            }
+        }
+
+        return cellsWithClues;
     }
 
     @Override
