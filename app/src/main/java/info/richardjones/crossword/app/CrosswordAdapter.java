@@ -1,6 +1,7 @@
 package info.richardjones.crossword.app;
 
 import android.content.Context;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,17 +28,24 @@ public class CrosswordAdapter extends BaseAdapter {
 
         View gridView;
 
+        Cell cell = cells.get(position);
         if (convertView == null) {
             gridView = inflater.inflate(R.layout.grid_cell, null);
 
             TextView textView = (TextView) gridView.findViewById(R.id.grid_item_label);
-            textView.setText(cells.get(position).getLetter());
+            if (cell.getNumber() > 0) {
+                textView.setText(Html.fromHtml(String.format("<sup><small>%s</small></sup> <font color='black'>%s</font>", cell.getNumber(), cell.getLetter())));
+            }
+            else {
+                textView.setText(Html.fromHtml(String.format("<font color='black'>%s</font>", cell.getLetter())));
+
+            }
         } else {
             gridView = convertView;
         }
 
         Log.d("ABC", "Position is " + position);
-        gridView.setBackgroundColor(cells.get(position).getBackgroundColour());
+        gridView.setBackgroundColor(cell.getBackgroundColour());
 
         return gridView;
     }
