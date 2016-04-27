@@ -3,7 +3,7 @@ package info.richardjones.crossword.app;
 import static org.junit.Assert.assertEquals;
 
 import android.graphics.Color;
-import info.richardjones.crossword.app.loader.TestCrosswordLoader;
+import info.richardjones.crossword.app.loader.CrosswordLoader;
 import info.richardjones.crossword.app.vo.Cell;
 import org.junit.Test;
 
@@ -20,7 +20,11 @@ public class CrosswordLoaderTest {
     @Test
     public void testTestCrosswordLoader() {
 
-        TestCrosswordLoader loader = new TestCrosswordLoader();
+        CrosswordLoader loader = new CrosswordLoader(
+                "{number:1,letter:C,downClue:Bed}-{letter:A}-{letter:T}-{blank}|" +
+                "{letter:O}-{blank}-{blank}-{number:2,letter:B,downClue:To...}|" +
+                "{number:3,letter:T,acrossClue:big+bush}-{letter:R}-{letter:E}-{letter:E}"
+        );
         assertEquals(new Integer(3), loader.getHeight());
         assertEquals(new Integer(4), loader.getWidth());
 
@@ -38,5 +42,7 @@ public class CrosswordLoaderTest {
         assertEquals(new Cell(Color.WHITE, -1, "R", "", ""), cells.get(9));
         assertEquals(new Cell(Color.WHITE, -1, "E", "", ""), cells.get(10));
         assertEquals(new Cell(Color.WHITE, -1, "E", "", ""), cells.get(11));
+
+        assertEquals("without the +", "big bush", cells.get(8).getAcrossClue());
     }
 }
