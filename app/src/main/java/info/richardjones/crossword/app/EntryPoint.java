@@ -27,34 +27,51 @@ public class EntryPoint extends AppCompatActivity {
     private void loadData() {
         TestCrosswordLoader loader = new TestCrosswordLoader();
 
-        GridView gridView = (GridView) findViewById(R.id.grid_view);
+        final GridView gridView = (GridView) findViewById(R.id.grid_view);
         gridView.setNumColumns(loader.getWidth());
 
         List<Cell> cells = loader.getCells();
-        CrosswordAdapter adapter = new CrosswordAdapter(EntryPoint.this, cells);
+        final CrosswordAdapter adapter = new CrosswordAdapter(EntryPoint.this, cells);
         gridView.setAdapter(adapter);
+
+        final ListView listview = (ListView) findViewById(R.id.clueList);
+        final ClueAdapter clueAdapter = new ClueAdapter(this, getCellsWithClues(cells));
+        listview.setAdapter(clueAdapter);
+
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                Toast.makeText(EntryPoint.this, "Position: " + position, Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(EntryPoint.this, "Position: " + position + " " + adapter.getItem(position), Toast.LENGTH_SHORT).show();
             }
         });
 
-        loadClueList(cells);
-    }
+        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                listview.smoothScrollToPosition(clueAdapter.getListPositionOfClue(adapter.getItem(position).getNumber()));
+                return true;
+            }
+        });
 
-    private void loadClueList(List<Cell> cells) {
-        final ListView listview = (ListView) findViewById(R.id.clueList);
-        listview.setAdapter(new ClueAdapter(this, getCellsWithClues(cells)));
     }
 
     private List<Cell> getCellsWithClues(List<Cell> cells) {
         List<Cell> cellsWithClues = newArrayList();
 
+        Cell cell1 = new Cell();
+        cell1.setNumber(0);
+
+        for (int i = 0; i < 10; i++) {
+            cellsWithClues.add(cell1);
+
+        }
+
         for (Cell cell : cells) {
             if (cell.getNumber() > 0) {
                 cellsWithClues.add(cell);
+                cellsWithClues.add(cell1);
             }
         }
 

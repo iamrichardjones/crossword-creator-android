@@ -56,8 +56,8 @@ public class CrosswordAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public Cell getItem(int position) {
+        return cells.get(position);
     }
 
     @Override

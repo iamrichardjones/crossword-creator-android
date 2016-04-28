@@ -1,6 +1,7 @@
 package info.richardjones.crossword.app;
 
 import android.content.Context;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,12 +32,33 @@ public class ClueAdapter extends ArrayAdapter<Cell> {
         TextView textView = (TextView) rowView.findViewById(R.id.clueLabel);
         Cell cell = cells.get(position);
         Log.d("ABC", "Cell to string " + cell);
-        textView.setText(String.format("%s %s: %s",
+        textView.setText(Html.fromHtml(
+            String.format("%s %s %s: %s %s",
+                cell.getHighlight() ? "<b>" : "",
                 cell.getNumber(),
                 cell.getAcrossClue().equals("") ? "Down" : "Across",
-                cell.getAcrossClue().equals("") ? cell.getDownClue(): cell.getAcrossClue()));
+                cell.getAcrossClue().equals("") ? cell.getDownClue(): cell.getAcrossClue(),
+                cell.getHighlight() ? "<b>" : "")));
 
         return rowView;
+    }
+
+    public int getListPositionOfClue(Integer number) {
+        for (Cell cell : cells) {
+            cell.setHighlight(false);
+        }
+        notifyDataSetChanged();
+
+        int res = 0;
+        for (int i = 0; i < cells.size(); i++) {
+            Cell cell = cells.get(i);
+            if (cell.getNumber().equals(number)) {
+                cell.setHighlight(true);
+                res = i;
+            }
+        }
+
+        return res;
     }
 }
 

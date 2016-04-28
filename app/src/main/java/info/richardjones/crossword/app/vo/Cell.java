@@ -22,6 +22,7 @@ public class Cell {
     private String acrossClue;
     private String downClue;
     private int backgroundColour;
+    private Boolean highlight;
 
     public Cell(){
         this(Color.WHITE, -1, "", "", "");
@@ -33,6 +34,7 @@ public class Cell {
         this.letter = letter;
         this.acrossClue = acrossClue;
         this.downClue = downClue;
+        this.highlight = false;
     }
 
     public void setNumber(Integer number) {
@@ -86,7 +88,8 @@ public class Cell {
         builder.append("Letter: ").append(letter).append(", ");;
         builder.append("Number: ").append(number).append(", ");;
         builder.append("AcrossClue: ").append(acrossClue).append(", ");;
-        builder.append("DownClue: ").append(downClue);
+        builder.append("DownClue: ").append(downClue).append(", ");
+        builder.append("Highlight: ").append(highlight);
 
         return builder.toString();
     }
@@ -108,5 +111,14 @@ public class Cell {
     public int hashCode() {
         return letter.hashCode();
     }
+
+    public void setHighlight(Boolean highlight) {
+        this.highlight = highlight;
+    }
+
+    public Boolean getHighlight() {
+        return highlight;
+    }
+
 }
 
