@@ -1,6 +1,7 @@
 package info.richardjones.crossword.app;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,22 +30,30 @@ public class CrosswordAdapter extends BaseAdapter {
         View gridView;
 
         Cell cell = cells.get(position);
+
         if (convertView == null) {
             gridView = inflater.inflate(R.layout.grid_cell, null);
 
+            String textColour = "#FFFFFF";
+            if (cell.getForegroundColour() == Color.BLACK) {
+                textColour = "#000000";
+                Log.d("ABC", "Setting to black " + cell.getLetter());
+            }
+
+            Log.d("ABC", "Colour in adapter is " + textColour);
+
             TextView textView = (TextView) gridView.findViewById(R.id.grid_item_label);
             if (cell.getNumber() > 0) {
-                textView.setText(Html.fromHtml(String.format("<sup><small>%s</small></sup> <font color='black'>%s</font>", cell.getNumber(), cell.getLetter())));
+                textView.setText(Html.fromHtml(String.format("<font color='%s'><sup><small>%s</small></sup> %s</font>", textColour, cell.getNumber(), cell.getLetter())));
             }
             else {
-                textView.setText(Html.fromHtml(String.format("<font color='black'>%s</font>", cell.getLetter())));
+                textView.setText(Html.fromHtml(String.format("<font color='%s'>%s</font>", textColour, cell.getLetter())));
 
             }
         } else {
             gridView = convertView;
         }
 
-        Log.d("ABC", "Position is " + position);
         gridView.setBackgroundColor(cell.getBackgroundColour());
 
         return gridView;
@@ -63,5 +72,10 @@ public class CrosswordAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return 0;
+    }
+
+
+    public void repaint() {
+        notifyDataSetChanged();
     }
 }

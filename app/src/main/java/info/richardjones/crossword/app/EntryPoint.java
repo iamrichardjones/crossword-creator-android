@@ -1,7 +1,9 @@
 package info.richardjones.crossword.app;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,8 +44,17 @@ public class EntryPoint extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-
-                Toast.makeText(EntryPoint.this, "Position: " + position + " " + adapter.getItem(position), Toast.LENGTH_SHORT).show();
+                Cell item = adapter.getItem(position);
+                Log.d("ABC", "click0 "+ item.getForegroundColour());
+                Log.d("ABC", "Position is2 " + position);
+                if (item.getForegroundColour() == Color.WHITE) {
+                    Log.d("ABC", "click1 " + item.getForegroundColour());
+                    item.setForegroundColour(Color.BLACK);
+                    Log.d("ABC", "click2 " + item.getForegroundColour());
+                }
+                adapter.notifyDataSetChanged();
+                gridView.setAdapter(adapter);
+                Toast.makeText(EntryPoint.this, "Position: " + position + " " + item, Toast.LENGTH_SHORT).show();
             }
         });
 

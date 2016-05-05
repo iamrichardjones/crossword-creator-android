@@ -22,14 +22,16 @@ public class Cell {
     private String acrossClue;
     private String downClue;
     private int backgroundColour;
+    private int foregroundColour;
     private Boolean highlight;
 
     public Cell(){
-        this(Color.WHITE, -1, "", "", "");
+        this(Color.WHITE, Color.WHITE, -1, "", "", "");
     };
 
-    public Cell(int backgroundColour, Integer number, String letter, String acrossClue, String downClue) {
+    public Cell(int backgroundColour, int foregroundColour, Integer number, String letter, String acrossClue, String downClue) {
         this.backgroundColour = backgroundColour;
+        this.foregroundColour = foregroundColour;
         this.number = number;
         this.letter = letter;
         this.acrossClue = acrossClue;
@@ -77,14 +79,23 @@ public class Cell {
         return downClue;
     }
 
+    public int getForegroundColour() {
+        return foregroundColour;
+    }
+
+    public void setForegroundColour(int foregroundColour) {
+        this.foregroundColour = foregroundColour;
+    }
+
     public static Cell newBlankCell() {
-        return new Cell(Color.BLACK, -1, "", "", "");
+        return new Cell(Color.BLACK, Color.BLACK, -1, "", "", "");
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Colour: ").append(backgroundColour).append(", ");
+        builder.append("Background Colour: ").append(backgroundColour).append(", ");
+        builder.append("Foreground Colour: ").append(foregroundColour).append(", ");
         builder.append("Letter: ").append(letter).append(", ");;
         builder.append("Number: ").append(number).append(", ");;
         builder.append("AcrossClue: ").append(acrossClue).append(", ");;
