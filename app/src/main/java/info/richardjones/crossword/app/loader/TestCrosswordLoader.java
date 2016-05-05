@@ -31,7 +31,7 @@ public class TestCrosswordLoader {
     public String getTestString() {
         return
                 /* 4 * 3*/
-                "{number:1,letter:C,downClue:Bed}-{letter:A}-{letter:T}-{blank}|" +
+                "{number:1,letter:C,downClue:Bed, acrossClue:random}-{letter:A}-{letter:T}-{blank}|" +
                 "{letter:O}-{blank}-{blank}-{number:2,letter:B,downClue:To...}|" +
                 "{number:3,letter:T,acrossClue:big+bush}-{letter:R}-{letter:E}-{letter:E}";
 
