@@ -30,7 +30,13 @@ public class EntryPoint extends AppCompatActivity {
         TestCrosswordLoader loader = new TestCrosswordLoader();
 
         final GridView gridView = (GridView) findViewById(R.id.grid_view);
-        gridView.setNumColumns(loader.getWidth());
+        Integer width = loader.getWidth();
+        Integer height = loader.getHeight();
+        gridView.setNumColumns(width);
+        final int CELL_WIDTH = 40;
+        gridView.getLayoutParams().width = (CELL_WIDTH * width);
+        gridView.getLayoutParams().height = (CELL_WIDTH * height);
+
 
         List<Cell> cells = loader.getCells();
         final CrosswordAdapter adapter = new CrosswordAdapter(EntryPoint.this, cells);

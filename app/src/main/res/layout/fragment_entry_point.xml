@@ -26,12 +26,13 @@
         <GridView xmlns:android="http://schemas.android.com/apk/res/android"
                   android:id="@+id/grid_view"
                   android:background="#FF000000"
-                  android:layout_width="175px"
+                  android:padding="1dp"
+                  android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:numColumns="5"
-                  android:columnWidth="35dp"
+                  android:layout_centerHorizontal="true"
                   android:verticalSpacing="1dp"
                   android:horizontalSpacing="1dp"
+                  android:scrollbars="none"
                 />
 
         <View
