@@ -1,5 +1,6 @@
 package info.richardjones.crossword.app;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
 import info.richardjones.crossword.app.loader.TestCrosswordLoader;
 import info.richardjones.crossword.app.vo.Cell;
@@ -27,15 +29,16 @@ public class EntryPoint extends AppCompatActivity {
     }
 
     private void loadData() {
+        final int CELL_WIDTH = 40;
+
         TestCrosswordLoader loader = new TestCrosswordLoader();
+        Integer numOfColumns = loader.getWidth();
+        Integer numOfRows = loader.getHeight();
 
         final GridView gridView = (GridView) findViewById(R.id.grid_view);
-        Integer width = loader.getWidth();
-        Integer height = loader.getHeight();
-        gridView.setNumColumns(width);
-        final int CELL_WIDTH = 40;
-        gridView.getLayoutParams().width = (CELL_WIDTH * width);
-        gridView.getLayoutParams().height = (CELL_WIDTH * height);
+        gridView.setNumColumns(numOfColumns);
+        gridView.getLayoutParams().width = (CELL_WIDTH * numOfColumns);
+        gridView.getLayoutParams().height = (CELL_WIDTH * numOfRows) + 2;
 
 
         List<Cell> cells = loader.getCells();
@@ -46,6 +49,8 @@ public class EntryPoint extends AppCompatActivity {
         final ClueAdapter clueAdapter = new ClueAdapter(this, getCellsWithClues(cells));
         listview.setAdapter(clueAdapter);
 
+        final EditText tv = (EditText) findViewById(R.id.celllabel);
+
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
@@ -53,14 +58,22 @@ public class EntryPoint extends AppCompatActivity {
                 Cell item = adapter.getItem(position);
                 Log.d("ABC", "click0 "+ item.getForegroundColour());
                 Log.d("ABC", "Position is2 " + position);
-                if (item.getForegroundColour() == Color.WHITE) {
-                    Log.d("ABC", "click1 " + item.getForegroundColour());
-                    item.setForegroundColour(Color.BLACK);
-                    Log.d("ABC", "click2 " + item.getForegroundColour());
-                }
-                adapter.notifyDataSetChanged();
-                gridView.setAdapter(adapter);
+//                if (item.getForegroundColour() == Color.WHITE) {
+//                    Log.d("ABC", "click1 " + item.getForegroundColour());
+//                    item.setForegroundColour(Color.BLACK);
+//                    Log.d("ABC", "click2 " + item.getForegroundColour());
+//                }
+//                adapter.notifyDataSetChanged();
+//                gridView.setAdapter(adapter);
                 Toast.makeText(EntryPoint.this, "Position: " + position + " " + item, Toast.LENGTH_SHORT).show();
+
+
+                // Show soft keyboard for the user to enter the value.
+//                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+//                imm.showSoftInput(gridView, InputMethodManager.SHOW_IMPLICIT);
+
+//                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//                imm.showSoftInput(tv, InputMethodManager.SHOW_IMPLICIT);
             }
         });
 
