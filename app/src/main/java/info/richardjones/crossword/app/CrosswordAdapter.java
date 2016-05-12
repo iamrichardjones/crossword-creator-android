@@ -34,7 +34,7 @@ public class CrosswordAdapter extends BaseAdapter {
         if (convertView == null) {
             gridView = inflater.inflate(R.layout.grid_cell, null);
 
-            String textColour = "#FF0000";
+            String textColour = "#000000";
 //            if (cell.getForegroundColour() == Color.BLACK) {
 //                textColour = "#000000";
 //                Log.d("ABC", "Setting to black " + cell.getLetter());
@@ -43,12 +43,8 @@ public class CrosswordAdapter extends BaseAdapter {
             Log.d("ABC", "Colour in adapter is " + textColour);
 
             TextView textView = (TextView) gridView.findViewById(R.id.grid_item_label);
-//            if (cell.getNumber() > 0) {
-//                textView.setText(Html.fromHtml(String.format("<font color='%s'><sup><small>%s</small></sup> %s</font>", textColour, cell.getNumber(), cell.getLetter())));
-//            }
-//            else {
-                textView.setText(Html.fromHtml(String.format("<font color='%s'>%s</font>", textColour, cell.getLetter())));
-//            }
+            textView.setText(Html.fromHtml(String.format("<font color='%s'>%s</font>", textColour, cell.getLetter())));
+
             TextView superScriptTv = (TextView) gridView.findViewById(R.id.grid_item_number);
             if (cell.getNumber() > 0) {
                 superScriptTv.setText(Html.fromHtml(String.format("<font>%s</font>", cell.getNumber())));
@@ -75,10 +71,5 @@ public class CrosswordAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return 0;
-    }
-
-
-    public void repaint() {
-        notifyDataSetChanged();
     }
 }
