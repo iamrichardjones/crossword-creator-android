@@ -39,12 +39,6 @@ public class CrosswordAdapter extends BaseAdapter {
             gridView = inflater.inflate(R.layout.grid_cell, null);
 
             final EditText editText = (EditText) gridView.findViewById(R.id.grid_item_label);
-//            Log.d("ETText ", "pos " + position + " b4:  " + editText.getText().toString());
-
-
-
-//            String textColour = cell.getGuess().equals(cell.getLetter()) ? "#00FF00" : "#FF0000" ;
-//            editText.setText(Html.fromHtml(String.format("<font color='%s'>%s</font>", textColour, cell.getLetter())));
             editText.setText(" ");
 
             TextView superScriptTv = (TextView) gridView.findViewById(R.id.grid_item_number);
@@ -52,12 +46,9 @@ public class CrosswordAdapter extends BaseAdapter {
                 superScriptTv.setText(Html.fromHtml(String.format("<font>%s</font>", cell.getNumber())));
             }
 
-
-
         } else {
             gridView = convertView;
         }
-
 
         AbsListView.LayoutParams params = new AbsListView.LayoutParams(80,80);
         gridView.setLayoutParams(params);
@@ -69,12 +60,9 @@ public class CrosswordAdapter extends BaseAdapter {
 
         final EditText editText = (EditText) gv.findViewById(R.id.grid_item_label);
         cell.setGuess(editText.getText().toString());
-//        String textColour = cell.getGuess().equals(cell.getLetter()) ? "#00FF00" : "#FF0000" ;
-//        editText.setTextColor(Color.parseColor(textColour));
 
         Log.e("CELL", " letter " + cell.getLetter() + " guess " + cell.getGuess());
 
-//        editText.setTextColor(Color.BLUE);
         editText.setOnClickListener(new EditText.OnClickListener(){
 
             @Override
@@ -103,8 +91,6 @@ public class CrosswordAdapter extends BaseAdapter {
             @Override
             public void afterTextChanged(Editable s) {
                 cell.setGuess(s.toString());
-                Log.e("CELL", cell.getNumber() + " " + cell.getGuess() + " " + cell.getLetter());
-//                editText.setTextColor(Color.BLUE);
                 String textColour = cell.getGuess().equals(cell.getLetter()) ? "#00FF00" : "#FF0000" ;
                 editText.setTextColor(Color.parseColor(textColour));
 
