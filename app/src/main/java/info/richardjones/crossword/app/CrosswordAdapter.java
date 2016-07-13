@@ -61,7 +61,7 @@ public class CrosswordAdapter extends BaseAdapter {
         final EditText editText = (EditText) gv.findViewById(R.id.grid_item_label);
         cell.setGuess(editText.getText().toString());
 
-        Log.e("CELL", " letter " + cell.getLetter() + " guess " + cell.getGuess());
+
 
         editText.setOnClickListener(new EditText.OnClickListener(){
 
@@ -92,6 +92,7 @@ public class CrosswordAdapter extends BaseAdapter {
             public void afterTextChanged(Editable s) {
                 cell.setGuess(s.toString());
                 String textColour = cell.getGuess().equals(cell.getLetter()) ? "#00FF00" : "#FF0000" ;
+                Log.e("CELL", " letter " + cell.getLetter() + " guess " + s);
                 editText.setTextColor(Color.parseColor(textColour));
 
                 entryPoint.closeKeyboard();
