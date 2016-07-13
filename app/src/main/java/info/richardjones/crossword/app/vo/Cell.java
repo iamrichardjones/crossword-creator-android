@@ -19,6 +19,7 @@ public class Cell {
 
     private Integer number;
     private String letter;
+    private String guess;
     private String acrossClue;
     private String downClue;
     private int backgroundColour;
@@ -87,6 +88,14 @@ public class Cell {
         this.foregroundColour = foregroundColour;
     }
 
+    public String getGuess() {
+        return guess;
+    }
+
+    public void setGuess(String guess) {
+        this.guess = guess;
+    }
+
     public static Cell newBlankCell() {
         return new Cell(Color.BLACK, Color.BLACK, -1, "", "", "");
     }
@@ -100,6 +109,7 @@ public class Cell {
         builder.append("Number: ").append(number).append(", ");;
         builder.append("AcrossClue: ").append(acrossClue).append(", ");;
         builder.append("DownClue: ").append(downClue).append(", ");
+        builder.append("guess: ").append(guess).append(", ");
         builder.append("Highlight: ").append(highlight);
 
         return builder.toString();

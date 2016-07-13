@@ -17,11 +17,13 @@
             android:background="#C8C8C8"
             android:orientation="horizontal">
 
+
         <View
                 android:background="#FFC8C8C8"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"/>
+                android:layout_weight="2"
+                />
 
         <GridView xmlns:android="http://schemas.android.com/apk/res/android"
                   android:id="@+id/grid_view"
@@ -30,10 +32,17 @@
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_centerHorizontal="true"
+                  android:layout_centerVertical="true"
                   android:verticalSpacing="1dp"
                   android:horizontalSpacing="1dp"
                   android:scrollbars="none"
+                  android:clickable="true"
                 />
+        <!--android:layout_width="match_parent"-->  <!-- ORIGINALLY WAS WRAP CONTENT-->
+        <!--android:layout_height="match_parent"-->
+
+        <!--android:focusable="false"-->
+                  <!--android:focusableInTouchMode="false"-->
 
         <View
                 android:background="#FFC8C8C8"

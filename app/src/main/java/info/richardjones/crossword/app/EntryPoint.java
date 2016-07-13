@@ -2,9 +2,11 @@ package info.richardjones.crossword.app;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,36 +30,51 @@ public class EntryPoint extends AppCompatActivity {
         loadData();
     }
 
+
+
     private void loadData() {
-        final int CELL_WIDTH = 40;
+//        final int CELL_WIDTH = 40;
+        final int CELL_WIDTH = 85;   //width == 1080 height = 1776
+                                     //width = 1536  height = 2048   << S2 TABLET
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        int height = size.y;
+
 
         TestCrosswordLoader loader = new TestCrosswordLoader();
+
         Integer numOfColumns = loader.getWidth();
         Integer numOfRows = loader.getHeight();
 
         final GridView gridView = (GridView) findViewById(R.id.grid_view);
         gridView.setNumColumns(numOfColumns);
         gridView.getLayoutParams().width = (CELL_WIDTH * numOfColumns);
-        gridView.getLayoutParams().height = (CELL_WIDTH * numOfRows) + 2;
+        gridView.getLayoutParams().height = (CELL_WIDTH * numOfRows);
 
+        Log.e("WIDTH", width + " a");
+        Log.e("HEIGHT", height  + " a");
 
         List<Cell> cells = loader.getCells();
-        final CrosswordAdapter adapter = new CrosswordAdapter(EntryPoint.this, cells);
+
+        final CrosswordAdapter adapter = new CrosswordAdapter(EntryPoint.this, EntryPoint.this, cells);
         gridView.setAdapter(adapter);
 
         final ListView listview = (ListView) findViewById(R.id.clueList);
         final ClueAdapter clueAdapter = new ClueAdapter(this, getCellsWithClues(cells));
         listview.setAdapter(clueAdapter);
 
-        final EditText tv = (EditText) findViewById(R.id.celllabel);
 
-
+/*
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                Cell item = adapter.getItem(position);
-                Log.d("ABC", "click0 "+ item.getForegroundColour());
-                Log.d("ABC", "Position is2 " + position);
+//                Cell item = adapter.getItem(position);
+//                Log.d("ABCD", "click0 "+ item.getForegroundColour());
+                Log.d("ABCDE", "YES YES Position is2 " + position);
+                Toast.makeText(EntryPoint.this, "Position: " + position, Toast.LENGTH_SHORT).show();
 //                if (item.getForegroundColour() == Color.WHITE) {
 //                    Log.d("ABC", "click1 " + item.getForegroundColour());
 //                    item.setForegroundColour(Color.BLACK);
@@ -65,8 +82,6 @@ public class EntryPoint extends AppCompatActivity {
 //                }
 //                adapter.notifyDataSetChanged();
 //                gridView.setAdapter(adapter);
-                Toast.makeText(EntryPoint.this, "Position: " + position + " " + item, Toast.LENGTH_SHORT).show();
-
 
                 // Show soft keyboard for the user to enter the value.
 //                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -76,14 +91,16 @@ public class EntryPoint extends AppCompatActivity {
 //                imm.showSoftInput(tv, InputMethodManager.SHOW_IMPLICIT);
             }
         });
-
-        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                listview.smoothScrollToPosition(clueAdapter.getListPositionOfClue(adapter.getItem(position).getNumber()));
-                return true;
-            }
-        });
+*/
+//        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+//                Log.d("ABCDE", "EXPECTED Position is3 " + position);
+//                Toast.makeText(EntryPoint.this, "Position: " + position, Toast.LENGTH_SHORT).show();
+//                listview.smoothScrollToPosition(clueAdapter.getListPositionOfClue(adapter.getItem(position).getNumber()));
+//                return true;
+//            }
+//        });
 
     }
 
@@ -91,11 +108,10 @@ public class EntryPoint extends AppCompatActivity {
         List<Cell> cellsWithClues = newArrayList();
 
         Cell cell1 = new Cell();
-        cell1.setNumber(0);
+        cell1.setNumber(new Long(Math.round(Math.random() * 100)).intValue());
 
         for (int i = 0; i < 10; i++) {
             cellsWithClues.add(cell1);
-
         }
 
         for (Cell cell : cells) {
@@ -130,5 +146,19 @@ public class EntryPoint extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showKeyboard(EditText editText) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
+    }
+
+    public void closeKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+
     }
 }
