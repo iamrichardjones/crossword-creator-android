@@ -66,32 +66,6 @@ public class EntryPoint extends AppCompatActivity {
         final ClueAdapter clueAdapter = new ClueAdapter(this, getCellsWithClues(cells));
         listview.setAdapter(clueAdapter);
 
-
-/*
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-//                Cell item = adapter.getItem(position);
-//                Log.d("ABCD", "click0 "+ item.getForegroundColour());
-                Log.d("ABCDE", "YES YES Position is2 " + position);
-                Toast.makeText(EntryPoint.this, "Position: " + position, Toast.LENGTH_SHORT).show();
-//                if (item.getForegroundColour() == Color.WHITE) {
-//                    Log.d("ABC", "click1 " + item.getForegroundColour());
-//                    item.setForegroundColour(Color.BLACK);
-//                    Log.d("ABC", "click2 " + item.getForegroundColour());
-//                }
-//                adapter.notifyDataSetChanged();
-//                gridView.setAdapter(adapter);
-
-                // Show soft keyboard for the user to enter the value.
-//                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-//                imm.showSoftInput(gridView, InputMethodManager.SHOW_IMPLICIT);
-
-//                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//                imm.showSoftInput(tv, InputMethodManager.SHOW_IMPLICIT);
-            }
-        });
-*/
 //        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 //            @Override
 //            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
